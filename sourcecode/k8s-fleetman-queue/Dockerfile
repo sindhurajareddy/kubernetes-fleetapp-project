@@ -1,4 +1,4 @@
-FROM FROM amazoncorretto:17
+FROM amazoncorretto:17
 
 MAINTAINER Richard Chesterwood "richard@inceptiontraining.co.uk"
 
