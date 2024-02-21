@@ -15,6 +15,7 @@ spec:
       containers:
       - name: queue
         image: riteshdockerhub036/k8s-fleetman-queue:latest
+/*
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -101,3 +102,4 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
+*/
