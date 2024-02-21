@@ -1,3 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: queue
+spec:
+  selector:
+    matchLabels:
+      app: queue
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: queue
+    spec:
+      containers:
+      - name: queue
+        image: riteshdockerhub036/k8s-fleetman-queue:latest
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -63,3 +80,24 @@ spec:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  selector:
+    matchLabels:
+      app: webapp
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: riteshdockerhub036/k8s-fleetman-webapp-angular:latest
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: production-microservice
