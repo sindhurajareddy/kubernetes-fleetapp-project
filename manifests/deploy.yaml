@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: position-simulator
-        image: riteshdockerhub036/k8s-fleetman-position-simulator:release2
+        image: riteshdockerhub036/k8s-fleetman-position-simulator:latest
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: position-tracker
-        image: riteshdockerhub036/k8s-fleetman-position-tracker:release2
+        image: riteshdockerhub036/k8s-fleetman-position-tracker:latest
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
