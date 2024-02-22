@@ -6,6 +6,6 @@ RUN yum install -y which wget gzip tar && wget -O activemq.tar.gz http://archive
 
 RUN tar -xzf activemq.tar.gz
 
-ENV JAVA_HOME=/usr/bin/
+ENV JAVA_HOME=/usr/bin/bash
 
 CMD ["apache-activemq-5.17.3/bin/activemq", "console"]
