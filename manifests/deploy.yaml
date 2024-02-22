@@ -1,21 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: queue
+  name: api-gateway
 spec:
   selector:
     matchLabels:
-      app: queue
+      app: api-gateway
   replicas: 1
   template: # template for the pods
     metadata:
       labels:
-        app: queue
+        app: api-gateway
     spec:
       containers:
-      - name: queue
-        image: riteshdockerhub036/k8s-fleetman-queue:latest
-
+      - name: api-gateway
+        image: richardchesterwood/k8s-fleetman-api-gateway:release2
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: production-microservice
  
 ---
 apiVersion: v1
