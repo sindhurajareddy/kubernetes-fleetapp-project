@@ -1,4 +1,4 @@
-FROM arm64v8/amazoncorretto:17.0.5-al2022-RC-headless
+FROM amazoncorretto:17
 
 MAINTAINER Richard Chesterwood "richard@inceptiontraining.co.uk"
 
@@ -9,3 +9,4 @@ RUN tar -xzf activemq.tar.gz
 ENV JAVA_HOME=/usr/bin/
 
 CMD ["apache-activemq-5.17.3/bin/activemq", "console"]
+
