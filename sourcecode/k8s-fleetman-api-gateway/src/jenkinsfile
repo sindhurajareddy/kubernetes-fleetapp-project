@@ -1,0 +1,27 @@
+@Library('jenkins_shared_lib')_
+
+pipeline {
+    agent any
+        stages {
+        stage('Git Checkout ') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/sindhurajareddy/kubernetes-fleetapp-project.git']])
+            }
+        }
+        stage('Build-to-Push-k8s-fleetman-api-gateway') {
+            steps {
+                mvnBuild(directory: '/var/lib/jenkins/workspace/project-1/sourcecode/k8s-fleetman-api-gateway', mavenGoal: 'clean install')
+                dockerBuild(directory: '/var/lib/jenkins/workspace/project-1/sourcecode/k8s-fleetman-api-gateway', imageName: 'sindhudh/k8s-fleetman-api-gateway', tag:'latest')
+                dockerImagePush(user: 'sindhudh', pass: 'sindhurajareddy@143', imageName: 'sindhudh/k8s-fleetman-api-gateway', tag:'latest')
+                
+            }
+        }
+        stage('Deployment') {
+            steps {
+                 kubernetesDeploy (configs:'manifests/*.yaml',kubeconfigId: 'k8s')
+            }
+        }
+    }
+}
+
+        
